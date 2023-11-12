@@ -70,7 +70,8 @@
         padding-top: 20px;
     }
 
-    .dropdown-item {
+    a.dropdown-item {
+        padding: 10px 20px !important;
         transition: 0.4s !important;
     }
 
@@ -96,15 +97,6 @@
         .hamburger {
         display: inline-block;
         cursor: pointer;
-        }
-
-        .nav-item a {
-        padding: 10px 0 10px 0 !important;
-        padding-top: 20px;
-        }
-
-        a.dropdown-item {
-            padding-left: 20px !important;
         }
     }
 
@@ -133,7 +125,7 @@
         <div class="logo">
             <!-- Logo -->
             <a class="navbar-brand text-white" href="{% url 'home' %}">
-                <img class="logo-img" src="../media/logo.jpg" alt="gearup">
+                <img class="logo-img" src="/media/logo.jpg" alt="gearup">
             </a>
         </div>
         <div class="profile-cart">
@@ -142,9 +134,17 @@
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user text text-dark nav-icon"></i>
                 </a>
-                <div class="dropdown-menu bg-white" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item text-gray" href="#">Login</a>
-                    <a class="dropdown-item text-gray" href="#">Register</a>
+                <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="profileDropdown">
+                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                    <a href="" class="dropdown-item">Product Management</a>
+                    {% endif %}
+                    <a href="" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    {% else %}
+                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    {% endif %}
                 </div>
             </div>
             <!-- Shopping Bag -->
@@ -218,4 +218,4 @@
     function myFunction(x) {
       x.classList.toggle("change");
     }
-</script>{% load static %}
+</script>
