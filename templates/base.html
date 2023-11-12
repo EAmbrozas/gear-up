@@ -15,6 +15,8 @@
 
     {% block corecss %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -31,7 +33,14 @@
     <title>GearUp {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top"></header>
+    {% include 'navbar.html' %}
+    <header class="container-fluid">
+        <div id="discount-banner" class="row text-center">
+            <div class="col bg-dark">
+                <h4 class="discount text-light">Sign up now and enjoy 10% off your purchase!</h4>                
+            </div>            
+        </div>
+    </header>
 
     {% if messages %}
         <div class="message-container"></div>
