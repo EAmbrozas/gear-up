@@ -1,0 +1,55 @@
+/************************************************************************/
+/*Home page hero section*/
+/************************************************************************/
+
+.home {
+    background: url('/media/background.jpg') no-repeat center top;
+    background-size: cover;
+    height: calc(100vh - 190px);
+    width: 100%;
+    color: #555;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.home-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    max-width: 600px;
+    gap: 20px;
+}
+
+.shop-now-button {
+    padding: 10px 40px;
+}
+
+/* Home page hero section media */
+@media (max-width: 992px) {
+    .home {
+        background: url('/media/background.jpg') no-repeat center top;
+        background-size: cover;
+        height: auto;
+        width: 100%;
+        color: #555;
+        display: flex;
+        align-items: center;
+        padding: 150px 0;
+    }
+
+    h1 {
+        font-size: 48px !important;
+    }
+}
+
+@media (max-width: 540px) {
+    .home {
+        padding: 100px 0;
+    }
+
+    h1 {
+        font-size: 32px !important;
+    }
+}
