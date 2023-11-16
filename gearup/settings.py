@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['port-8000-django-ernestasambrozas434517.preview.codeanywhere.com']
+ALLOWED_HOSTS = ['port-8000-python-blue-monkey-ernestasambrozas434517.preview.codeanywhere.com']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'home',
+    'products',
 ]
 
 MIDDLEWARE = [
