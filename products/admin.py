@@ -9,13 +9,12 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'sku', 'price', 'rating', 'image')
+    readonly_fields = ('sku',)
     list_filter = ('category', 'rating')
     search_fields = ('name', 'description', 'sku')
-    prepopulated_fields = {'sku': ('name',)}
+    exclude = ('sku',)  # Exclude from form
 
     def save_model(self, request, obj, form, change):
-        if not obj.sku:
-            obj.sku = obj.generate_sku()
         super().save_model(request, obj, form, change)
 
 @admin.register(ProductSize)
