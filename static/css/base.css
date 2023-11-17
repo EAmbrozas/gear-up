@@ -1,7 +1,8 @@
-/************************************************************************/
-/*Home page hero section*/
-/************************************************************************/
+:root {
+    --accent-color: rgb(255, 145, 0);
+}
 
+/* Home page hero section */
 .home {
     background: url('/media/background.jpg') no-repeat center top;
     background-size: cover;
@@ -26,17 +27,10 @@
     padding: 10px 40px;
 }
 
-/* Home page hero section media */
 @media (max-width: 992px) {
     .home {
-        background: url('/media/background.jpg') no-repeat center top;
-        background-size: cover;
-        height: auto;
-        width: 100%;
-        color: #555;
-        display: flex;
-        align-items: center;
         padding: 150px 0;
+        height: auto;
     }
 
     h1 {
@@ -52,4 +46,83 @@
     h1 {
         font-size: 32px !important;
     }
+}
+
+/* Product list and cards */
+.product-card {
+    transition: box-shadow 0.3s ease-in-out;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-title {
+    height: 48px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
+}
+
+.category-label {
+    font-size: 12px;
+    color: #555;
+    font-weight: normal;
+}
+
+.product-card-img img {
+    width: 100%;
+    height: auto;
+}
+
+.product-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn.bg-dark {
+    width: 100%;
+}
+
+.admin-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-rating {
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.product-rating i {
+    margin-right: 0.2em;
+}
+
+@media (max-width: 767px) {
+    .product-card {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Product sizes btn */
+.btn-size {
+    margin-right: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-size.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
