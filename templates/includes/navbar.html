@@ -1,5 +1,99 @@
 {% load static %}
 
+<!-- Navbar -->
+<nav class="bg-white">
+    <div class="container nav-container">
+        <div class="logo">
+            <!-- Logo -->
+            <a class="navbar-brand text-white" href="{% url 'home' %}">
+                <img class="logo-img" src="/media/logo.jpg" alt="gearup">
+            </a>
+        </div>
+        <div class="profile-cart">
+            <!-- Profile Icon Dropdown -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user text text-dark nav-icon"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="profileDropdown">
+                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'product_create' %}" class="dropdown-item">Product Management</a>
+                    {% endif %}
+                    <a href="" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    {% else %}
+                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Shopping Bag -->
+            <a href="#" class="btn">
+                <i class="fas fa-shopping-bag text-dark nav-icon"></i>
+                <span class="badge badge">0</span>
+            </a>
+            <div class="hamburger" onclick="myFunction(this)" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="bar1 bg-dark"></div>
+                <div class="bar2 bg-dark"></div>
+                <div class="bar3 bg-dark"></div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-lg navbar-white bg-white">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Bar -->
+                <form class="form-inline" method="get" action="{% url 'product_list' %}">
+                    <input class="form-control border border-dark outline-white" type="search" name="q" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <!-- Nav Links -->
+                <div>
+                    <ul class="navbar-nav mr-auto">
+                        <!-- Dropdown for Brands -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Brands
+                            </a>
+                            <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item text-gray" href="/products/?q=AGV">AGV</a>
+                                <a class="dropdown-item text-gray" href="/products/?q=Alpinestars">Alpinestars</a>
+                                <a class="dropdown-item text-gray" href="/products/?q=Dainese">Dainese</a>
+                            </div>
+                        </li>
+                        <!-- Dropdown for Suits -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Suits
+                            </a>
+                            <div class="dropdown-menu bg-white aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item text-gray" href="{% url 'product_list' %}?q=1_piece_suites">1 Piece Suits</a>
+                                <a class="dropdown-item text-gray" href="{% url 'product_list' %}?q=2_piece_suites">2 Piece Suits</a>
+                            </div>
+                        </li>
+                        <!-- Other Nav Items -->
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Jackets">Jackets</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Pants">Pants</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Gloves">Gloves</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Boots">Boots</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Helmets">Helmets</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="/products/?q=Accessories">Accessories</a></li>
+                    </ul>
+                    <div id="mobile-discount-banner" class="row text-center">
+                        <div class="col bg-dark">
+                            <p class="discount text-light">Sign up now and enjoy 10% off your purchase!</p>                
+                        </div>            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% block extra_css %}
 <style>
     nav {
         position: relative;
@@ -118,104 +212,12 @@
         }
     }
 </style>
+{% endblock %}
 
-<!-- Navbar -->
-<nav class="bg-white">
-    <div class="container nav-container">
-        <div class="logo">
-            <!-- Logo -->
-            <a class="navbar-brand text-white" href="{% url 'home' %}">
-                <img class="logo-img" src="/media/logo.jpg" alt="gearup">
-            </a>
-        </div>
-        <div class="profile-cart">
-            <!-- Profile Icon Dropdown -->
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user text text-dark nav-icon"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="profileDropdown">
-                    {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
-                    <a href="" class="dropdown-item">Product Management</a>
-                    {% endif %}
-                    <a href="" class="dropdown-item">My Profile</a>
-                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                    {% else %}
-                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                    {% endif %}
-                </div>
-            </div>
-            <!-- Shopping Bag -->
-            <a href="#" class="btn">
-                <i class="fas fa-shopping-bag text-dark nav-icon"></i>
-                <span class="badge badge">0</span>
-            </a>
-            <div class="hamburger" onclick="myFunction(this)" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="bar1 bg-dark"></div>
-                <div class="bar2 bg-dark"></div>
-                <div class="bar3 bg-dark"></div>
-              </div>
-        </div>
-    </div>
-    <div class="navbar navbar-expand-lg navbar-white bg-white">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Search Bar -->
-                <form class="form-inline">
-                    <input class="form-control border border-dark outline-white" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-                <!-- Nav Links -->
-                <div>
-                    <ul class="navbar-nav mr-auto">
-                        <!-- Dropdown for Brands -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Brands
-                            </a>
-                            <div class="dropdown-menu bg-white" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item text-gray" href="#">Dainese</a>
-                                <a class="dropdown-item text-gray" href="#">Alpinestars</a>
-                                <a class="dropdown-item text-gray" href="#">AGV</a>
-                                <a class="dropdown-item text-gray" href="#">Arai</a>
-                            </div>
-                        </li>
-                        <!-- Dropdown for Suits -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Suits
-                            </a>
-                            <div class="dropdown-menu bg-white aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item text-gray" href="#">1 Piece Suits</a>
-                                <a class="dropdown-item text-gray" href="#">2 Piece Suits</a>
-                            </div>
-                        </li>
-                        <!-- Other Nav Items -->
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Jackets</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Pants</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Gloves</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Boots</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Helmets</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" href="#">Accessories</a></li>
-                    </ul>
-                    <div id="mobile-discount-banner" class="row text-center">
-                        <div class="col bg-dark">
-                            <p class="discount text-light">Sign up now and enjoy 10% off your purchase!</p>                
-                        </div>            
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-
+{% block extra_js %}
 <script>
     function myFunction(x) {
       x.classList.toggle("change");
     }
 </script>
+{% endblock %}

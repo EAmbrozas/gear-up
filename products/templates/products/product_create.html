@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <!-- Back Button -->
     <div class="mb-4">
-        <a href="{% url 'product_list' %}" class="btn btn-outline-dark">
+        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark">
             <i class="fa-solid fa-chevron-left"></i> Back
         </a>
     </div>

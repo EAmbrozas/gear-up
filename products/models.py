@@ -8,7 +8,6 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if self.friendly_name:
-            # Replace spaces with underscores and make lowercase
             self.name = slugify(self.friendly_name).replace('-', '_')
         super().save(*args, **kwargs)
 
@@ -18,8 +17,24 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
+class Brand(models.Model):
+    name = models.CharField(max_length=254, editable=False)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.friendly_name:
+            self.name = slugify(self.friendly_name).replace('-', '_')
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.friendly_name if self.friendly_name else self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    brand = models.ForeignKey('Brand', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=7, unique=True, editable=False)
     name = models.CharField(max_length=254)
     description = models.TextField()
