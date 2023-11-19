@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, Brand, Category
-from .forms import ProductForm
+from .models import Product, Brand, Category, ProductSize  
+from .forms import ProductForm, ProductSizeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -74,3 +74,31 @@ def product_delete(request, pk):
     else:
         messages.warning(request, 'Are you sure you want to delete this product?')
     return render(request, 'products/product_delete.html', {'product': product})
+
+@login_required
+def add_sizes_to_product(request, pk):
+    """ Add size to product """
+    product = Product.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = ProductSizeForm(request.POST)
+        if form.is_valid():
+            size = form.cleaned_data['size']
+            quantity = form.cleaned_data['quantity']
+
+            existing_size = ProductSize.objects.filter(product=product, size=size).first()
+            
+            if existing_size:
+                existing_size.quantity += quantity
+                existing_size.save()
+                messages.success(request, f'Quantity for size {size} updated successfully.')
+            else:
+                product_size = ProductSize(product=product, size=size, quantity=quantity)
+                product_size.save()
+                messages.success(request, f'Size {size} added successfully.')
+
+            return redirect('product_detail', pk=product.pk)
+    else:
+        form = ProductSizeForm()
+
+    return render(request, 'products/add_sizes.html', {'form': form, 'product': product})

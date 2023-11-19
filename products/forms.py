@@ -6,3 +6,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['brand', 'category', 'name', 'description', 'price', 'rating', 'image']
 
+
+class ProductSizeForm(forms.Form):
+    size = forms.CharField(max_length=50, label='Size')
+    quantity = forms.IntegerField(label='Quantity')
