@@ -69,11 +69,25 @@
                 </div>
                 {% endif %}
 
+                <!-- Quantity Input with Increase and Decrease Buttons -->
+                <div class="mb-5">
+                    <label for="quantityInput">Quantity:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-outline-dark" id="decreaseQuantity">-</button>
+                        </div>
+                        <input type="number" id="quantityInput" name="quantity" min="1" class="form-control" value="1">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-dark" id="increaseQuantity">+</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Product Price -->
                 <p class="product-price"><strong>Price:</strong> €{{ product.price }}</p>
 
                 <!-- Add to Cart Button -->
-                <button type="button" class="btn bg-dark text-light btn-lg w-100">Add to Cart</button>
+                <button type="button" class="btn bg-dark text-light btn-lg w-100" id="addToCartButton" disabled>Add to Cart</button>
             </div>
         </div>
     </div>
@@ -81,19 +95,40 @@
 {% endblock %}
 
 {% block postloadjs %}
-<!-- JavaScript for Size Button Interactivity -->
+<!-- JavaScript for Size Button Interactivity and Add to Cart Button Enable/Disable Logic -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const sizeButtons = document.querySelectorAll('.btn-size');
+        const addToCartButton = document.getElementById('addToCartButton');
+
         sizeButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // Only add 'active' class if button is not disabled
                 if (!this.hasAttribute('disabled')) {
                     sizeButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
+                    addToCartButton.disabled = false; // Enable the Add to Cart button
                 }
             });
         });
+
+        // Quantity Adjustment Logic
+        const increaseQuantityButton = document.getElementById('increaseQuantity');
+        const decreaseQuantityButton = document.getElementById('decreaseQuantity');
+        const quantityInput = document.getElementById('quantityInput');
+
+        if (increaseQuantityButton && decreaseQuantityButton) {
+            increaseQuantityButton.addEventListener('click', function() {
+                let currentQuantity = parseInt(quantityInput.value) || 1;
+                quantityInput.value = currentQuantity + 1;
+            });
+
+            decreaseQuantityButton.addEventListener('click', function() {
+                let currentQuantity = parseInt(quantityInput.value) || 1;
+                if (currentQuantity > 1) {
+                    quantityInput.value = currentQuantity - 1;
+                }
+            });
+        }
     });
-</script>  
+</script>
 {% endblock %}
