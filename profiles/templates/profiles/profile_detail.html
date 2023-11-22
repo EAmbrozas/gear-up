@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2 class="mb-4">User Profile</h2>
+    <div class="row">
+      <!-- Profile Image & Basic Info in Card -->
+      <div class="col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body text-center">
+            {% if user_profile.profile_image %}
+              <img src="{{ user_profile.profile_image.url }}" alt="{{ user.username }} Profile Image" class="img-fluid rounded profile-image mb-3">
+            {% else %}
+              <img src="{{ user_profile.get_default_profile_image }}" alt="{{ user.username }} Profile Image" class="img-fluid rounded profile-image mb-3">
+            {% endif %}
+            <h4>{{ user.username }}</h4>
+            <p class="text-muted">{{ user.email }}</p>
+            <a href="{% url 'profile_update' %}" class="btn btn-outline-dark btn-sm">Edit Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Info -->
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header bg-dark text-light">
+            <h4 class="card-title">Profile Details</h4>
+          </div>
+          <div class="card-body">
+            <div class="mb-2"><strong>Phone Number:</strong> {{ user_profile.phone_number }}</div>
+            <div class="mb-2"><strong>Address:</strong></div>
+            <div class="ps-3">
+              {% if user_profile.street_address1 %}<div><strong>Street Address 1:</strong> {{ user_profile.street_address1 }}</div>{% endif %}
+              {% if user_profile.street_address2 %}<div><strong>Street Address 2:</strong> {{ user_profile.street_address2 }}</div>{% endif %}
+              {% if user_profile.town_or_city %}<div><strong>Town/City:</strong> {{ user_profile.town_or_city }}</div>{% endif %}
+              {% if user_profile.county %}<div><strong>County:</strong> {{ user_profile.county }}</div>{% endif %}
+              {% if user_profile.postcode %}<div><strong>Postcode:</strong> {{ user_profile.postcode }}</div>{% endif %}
+              {% if user_profile.country %}<div><strong>Country:</strong> {{ user_profile.country.name }}</div>{% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder for Order History -->
+        <div class="card mt-4">
+          <div class="card-header bg-dark text-light">
+            <h4 class="card-title">Order History</h4>
+          </div>
+          <div class="card-body">
+            <p>Order history will be displayed here.</p>
+            <!-- Order history content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
