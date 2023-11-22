@@ -21,10 +21,10 @@
                     <a href="{% url 'product_create' %}" class="dropdown-item">Product Management</a>
                     {% endif %}
                     <a href="" class="dropdown-item">My Profile</a>
-                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    <a href="{% url 'account_logout' %}?next={{ request.path }}" class="dropdown-item">Logout</a>
                     {% else %}
-                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    <a href="{% url 'account_signup' %}?next={{ request.path }}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}?next={{ request.path }}" class="dropdown-item">Login</a>
                     {% endif %}
                 </div>
             </div>

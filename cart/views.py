@@ -1,14 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from products.models import Product, ProductSize
+from decimal import Decimal
 
 def view_cart(request):
-    """A view that renders the cart contents page"""
+    """
+    A view that renders the cart contents page.
+    Calculates the total price of items in the cart and applies a 10% discount for authenticated users.
+    """
     cart_items = []
-    total = 0
+    total = Decimal('0.0')
     product_count = 0
     total_quantity = 0
     cart = request.session.get('cart', {})
+    discount = Decimal('0.0')
 
     for item_key, item_data in cart.items():
         item_parts = item_key.split('-')
@@ -18,7 +23,7 @@ def view_cart(request):
 
         quantity = item_data.get('quantity', 0)
         subtotal = product.price * quantity
-        total += subtotal
+        total += Decimal(subtotal)
         product_count += quantity
         total_quantity += quantity
 
@@ -32,17 +37,27 @@ def view_cart(request):
 
     request.session['total_quantity'] = total_quantity
 
+    if request.user.is_authenticated:
+        discount = total * Decimal('0.1')  # 10% discount
+
+    total_after_discount = total - discount
+
     context = {
         'cart_items': cart_items,
         'total': total,
         'product_count': product_count,
         'total_quantity': total_quantity,
+        'discount': discount,
+        'total_after_discount': total_after_discount,
     }
 
     return render(request, 'cart/cart.html', context)
 
 def add_to_cart(request, pk):
-    """Add a quantity of the specified product to the shopping cart"""
+     """
+    Add a quantity of the specified product to the shopping cart.
+    Checks product availability in the selected size and updates the cart accordingly.
+    """
     product = get_object_or_404(Product, pk=pk)
     quantity = int(request.POST.get('quantity'))
     size = request.POST.get('product_size', None)
@@ -78,7 +93,10 @@ def add_to_cart(request, pk):
     return redirect('product_detail', pk=pk)
 
 def adjust_cart(request, pk):
-    """Adjust the quantity of the specified product in the shopping cart"""
+    """
+    Adjust the quantity of the specified product in the shopping cart.
+    Validates product availability in the selected size or stock and updates the cart.
+    """
     product = get_object_or_404(Product, pk=pk)
     quantity = int(request.POST.get('quantity'))
     size = request.POST.get('product_size', None)
@@ -104,7 +122,10 @@ def adjust_cart(request, pk):
     return redirect('view_cart')
 
 def remove_from_cart(request, pk):
-    """Remove the item from the shopping cart"""
+    """
+    Remove the item from the shopping cart.
+    Handles the removal of items from the cart based on the product and size.
+    """
     try:
         size = request.POST.get('product_size', None)
         cart = request.session.get('cart', {})

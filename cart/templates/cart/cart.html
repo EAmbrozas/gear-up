@@ -54,8 +54,20 @@
             <div class="row">
                 <!-- Total and Buttons Container -->
                 <div class="col-12 d-flex flex-column align-items-end">
-                    <!-- Total Amount Display -->
-                    <h4 class="mb-3">Total: <span id="total">€ {{ total }}</span></h4>
+                    <!-- Check if User is Logged In -->
+            {% if request.user.is_authenticated %}
+            <!-- Display Discount Amount for Logged-in Users -->
+            <p class="mb-3">Discount: € {{ discount|floatformat:"2" }}</p>
+
+            <!-- Calculate and Display Total After Discount for Logged-in Users -->
+            <h4>Total after Discount: <span id="total">€ {{ total_after_discount|floatformat:"2" }}</span></h4>
+            {% else %}
+            <!-- Display Message for Non-Logged-in Users -->
+            <p class="mb-3">Get 10% off your purchase when you <a href="{% url 'account_login' %}?next={{ request.path }}">login</a>.</p>
+
+            <!-- Display Total Price for Non-Logged-in Users -->
+            <h4 class="mb-3">Total: € {{ total }}</h4>
+            {% endif %}
         
                     <!-- Buttons Container -->
                     <div class="d-flex flex-column flex-sm-row align-items-sm-center">
