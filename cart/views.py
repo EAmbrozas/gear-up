@@ -54,7 +54,7 @@ def view_cart(request):
     return render(request, 'cart/cart.html', context)
 
 def add_to_cart(request, pk):
-     """
+    """
     Add a quantity of the specified product to the shopping cart.
     Checks product availability in the selected size and updates the cart accordingly.
     """
