@@ -28,10 +28,11 @@
                     {% endif %}
                 </div>
             </div>
-            <!-- Shopping Bag -->
-            <a href="#" class="btn">
+            <!-- Shopping Cart -->
+            <a href="{% url 'view_cart' %}" class="btn">
                 <i class="fas fa-shopping-bag text-dark nav-icon"></i>
-                <span class="badge badge">0</span>
+                <!-- Display Total Quantity from Session -->
+                <span class="badge badge">{{ request.session.total_quantity|default:'0' }}</span>
             </a>
             <div class="hamburger" onclick="myFunction(this)" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="bar1 bg-dark"></div>
