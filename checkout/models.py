@@ -30,6 +30,13 @@ class Order(models.Model):
     total_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     stripe_pid = models.CharField(max_length=254, null=True, blank=True)
 
+    def update_total(self):
+        """
+        Update total cost whenever a line item is added, updated, or deleted.
+        """
+        self.total_cost = sum(item.lineitem_total for item in self.lineitems.all())
+        self.save()
+
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the order number if it hasn't been set already
