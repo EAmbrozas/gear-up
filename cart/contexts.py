@@ -12,40 +12,34 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
     discount = Decimal('0.0')
 
-    for item_key, quantity in cart.items():
-        item_parts = item_key.split('-')
-        product_id = item_parts[0]
-        size_id = item_parts[1] if len(item_parts) > 1 else None
+    for item_key, item_data in cart.items():
+        product_id = item_data['product_id']
+        size = item_data.get('size', None)
+        quantity = item_data['quantity']
         product = Product.objects.get(pk=product_id)
 
-        if size_id:
+        if size:
             try:
-                size_id = int(size_id)
-                size = ProductSize.objects.get(pk=size_id)
-            except ValueError:
-                continue
+                product_size = ProductSize.objects.filter(product=product, size=size).first()
+                if product_size:
+                    size = product_size.size
+                else:
+                    size = None
+            except ProductSize.DoesNotExist:
+                size = None
 
-            price = product.price
-            subtotal = price * quantity
-            cart_items.append({
-                'item_id': item_key,
-                'quantity': quantity,
-                'product': product,
-                'size': size,
-                'subtotal': subtotal,
-            })
-        else:
-            price = product.price
-            subtotal = price * quantity
-            cart_items.append({
-                'item_id': item_key,
-                'quantity': quantity,
-                'product': product,
-                'subtotal': subtotal,
-            })
-
+        price = product.price
+        subtotal = price * quantity
         total += subtotal
         product_count += quantity
+
+        cart_items.append({
+            'item_id': item_key,
+            'quantity': quantity,
+            'product': product,
+            'size': size,
+            'subtotal': subtotal,
+        })
 
     if request.user.is_authenticated:
         discount = total * Decimal('0.1')

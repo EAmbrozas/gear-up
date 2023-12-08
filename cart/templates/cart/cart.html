@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<style>
+    .remove-padding {
+        padding: 0;
+    }
+
+    @media (max-width: 576px) {
+        .subtotal-section .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .total-after-discount,
+        .total {
+            font-size: 1.2em;
+        }
+    }
+
+    .total-and-buttons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <!-- Cart Container -->
 <div class="container mt-5">
@@ -8,87 +34,91 @@
 
     <!-- Check if Cart is Empty -->
     {% if cart_items %}
-        <!-- Cart Items Display -->
-        <div id="cart-items">
-            {% for item in cart_items %}
-                <!-- Individual Cart Item -->
-                <div class="row mb-3 align-items-center cart-item product-shadow p-3">
-                    <!-- Product Image -->
-                    <div class="col-md-2">
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+    <!-- Cart Items Display -->
+    <div id="cart-items">
+        {% for item in cart_items %}
+        <!-- Individual Cart Item -->
+        <div class="row mb-3 align-items-center cart-item product-shadow p-3">
+            <!-- Product Image -->
+            <div class="col-md-2">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+            </div>
+            <!-- Product Details -->
+            <div class="col-md-4">
+                <h5>{{ item.product.name }}</h5>
+                {% if item.size %}<p>Size: {{ item.size }}</p>{% endif %}
+            </div>
+            <!-- Quantity Form -->
+            <div class="col-md-3">
+                <form method="post" action="{% url 'adjust_cart' item.item_id %}" class="quantity-form"
+                    data-item="{{ item.item_id }}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <button type="button" class="btn btn-outline-dark btn-quantity-change" data-action="decrease"
+                            data-item="{{ item.item_id }}">-</button>
+                        <input type="number" name="quantity" value="{{ item.quantity }}" class="form-control">
+                        <button type="button" class="btn btn-outline-dark btn-quantity-change" data-action="increase"
+                            data-item="{{ item.item_id }}">+</button>
                     </div>
-                    <!-- Product Details -->
-                    <div class="col-md-4">
-                        <h5>{{ item.product.name }}</h5>
-                        {% if item.size %}<p>Size: {{ item.size }}</p>{% endif %}
-                    </div>
-                    <!-- Quantity Form -->
-                    <div class="col-md-3">
-                        <form method="post" action="{% url 'adjust_cart' item.item_id %}" class="quantity-form" data-item="{{ item.item_id }}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <button type="button" class="btn btn-outline-dark btn-quantity-change" data-action="decrease" data-item="{{ item.item_id }}">-</button>
-                                <input type="number" name="quantity" value="{{ item.quantity }}" class="form-control">
-                                <button type="button" class="btn btn-outline-dark btn-quantity-change" data-action="increase" data-item="{{ item.item_id }}">+</button>
-                            </div>
-                            <input type="hidden" name="product_size" value="{{ item.size }}">
-                            <button type="submit" class="btn btn-outline-dark btn-sm mt-2">Update Quantity</button>
-                        </form>
-                    </div>
-                    <!-- Subtotal and Remove Button -->
-                    <div class="col-md-3 text-right">
-                        <p><strong>Subtotal:</strong> € {{ item.subtotal }}</p>
-                        <form method="post" action="{% url 'remove_from_cart' item.item_id %}" class="remove-form">
-                            {% csrf_token %}
-                            <input type="hidden" name="product_size" value="{{ item.size }}">
-                            <button type="submit" class="btn btn-outline-dark">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            {% endfor %}
+                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                    <button type="submit" class="btn btn-outline-dark btn-sm mt-2">Update Quantity</button>
+                </form>
+            </div>
+            <!-- Subtotal and Remove Button -->
+            <div class="col-md-3 text-right">
+                <p><strong>Subtotal:</strong> € {{ item.subtotal }}</p>
+                <form method="post" action="{% url 'remove_from_cart' item.item_id %}" class="remove-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            </div>
         </div>
-        <!-- Subtotal and Checkout Section -->
-        <div class="subtotal-section mt-4">
-            <div class="row">
-                <!-- Total and Buttons Container -->
-                <div class="col-12 d-flex flex-column align-items-end">
-                    <!-- Check if User is Logged In -->
-            {% if request.user.is_authenticated %}
-            <!-- Display Discount Amount for Logged-in Users -->
-            <p class="mb-3">Discount: € {{ discount|floatformat:"2" }}</p>
+        {% endfor %}
+    </div>
+    <!-- Subtotal and Checkout Section -->
+    <div class="subtotal-section mt-4">
+        <div class="row">
+            <!-- Total and Buttons Container -->
+            <div class="remove-padding col-12 d-flex flex-column align-items-end">
+                <!-- Check if User is Logged In -->
+                {% if request.user.is_authenticated %}
+                <!-- Display Discount Amount for Logged-in Users -->
+                <p class="mb-3 pr-3">Discount: € {{ discount|floatformat:"2" }}</p>
 
-            <!-- Calculate and Display Total After Discount for Logged-in Users -->
-            <h4>Total after Discount: <span id="total">€ {{ total_after_discount|floatformat:"2" }}</span></h4>
-            {% else %}
-            <!-- Display Message for Non-Logged-in Users -->
-            <p class="mb-3">Get 10% off your purchase when you <a href="{% url 'account_login' %}?next={{ request.path }}">login</a>.</p>
+                <!-- Calculate and Display Total After Discount for Logged-in Users -->
+                <h4 class="pr-3 total-after-discount">Total after Discount: <span id="total">€ {{
+                        total_after_discount|floatformat:"2" }}</span></h4>
+                {% else %}
+                <!-- Display Message for Non-Logged-in Users -->
+                <p class="mb-3 alert alert-info">Get 10% off your purchase when you <a
+                        href="{% url 'account_login' %}?next={{ request.path }}">login</a>.</p>
 
-            <!-- Display Total Price for Non-Logged-in Users -->
-            <h4 class="mb-3">Total: € {{ total }}</h4>
-            {% endif %}
-        
-                    <!-- Buttons Container -->
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-                        <!-- Keep Shopping Button -->
-                        <a href="{% url 'product_list' %}" class="btn btn-outline-dark mb-2 mb-sm-0 mr-sm-2">
-                            <i class="fa-solid fa-angle-left"></i> Keep Shopping
-                        </a>
-                        <!-- Proceed to Secure Checkout Button -->
-                        <a href="{% url 'checkout' %}" class="btn btn-dark">
-                            Proceed to Secure Checkout <i class="fa-solid fa-lock"></i>
-                        </a>
-                    </div>
+                <!-- Display Total Price for Non-Logged-in Users -->
+                <h4 class="mb-3 pr-3 total">Total: € {{ total }}</h4>
+                {% endif %}
+                <!-- Buttons Container -->
+                <div class="col-12 d-flex flex-column flex-sm-row justify-content-sm-end align-items-sm-center">
+                    <!-- Keep Shopping Button -->
+                    <a href="{% url 'product_list' %}" class="btn btn-outline-dark mb-2 mb-sm-0 mr-sm-2">
+                        <i class="fa-solid fa-angle-left"></i> Keep Shopping
+                    </a>
+                    <!-- Proceed to Secure Checkout Button -->
+                    <a href="{% url 'checkout' %}" class="btn btn-dark">
+                        Proceed to Secure Checkout <i class="fa-solid fa-lock"></i>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
     {% else %}
-        <!-- Empty Cart Message -->
-        <div class="text-center">
-            <p>Your cart is currently empty.</p>
-            <a href="{% url 'product_list' %}" class="btn btn-outline-dark">Start Shopping</a>
-        </div>
+    <!-- Empty Cart Message -->
+    <div class="text-center">
+        <p>Your cart is currently empty.</p>
+        <a href="{% url 'product_list' %}" class="btn btn-outline-dark">Start Shopping</a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
@@ -96,9 +126,9 @@
 {% block postloadjs %}
 <!-- JavaScript for Cart Interactivity -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.btn-quantity-change').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const action = this.getAttribute('data-action');
                 const itemId = this.getAttribute('data-item');
                 const form = document.querySelector(`form[data-item='${itemId}']`);

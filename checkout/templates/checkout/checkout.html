@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_tools %}
+
+{% block extra_css %}
+<style>
+    @media (max-width: 576px) {
+        .submit-button .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .total-after-discount,
+        .total {
+            font-size: 1.2em;
+        }
+    }
+
+    .total-and-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Main Container for Checkout Page -->
+<div class="container mt-5">
+    <!-- Header for Checkout Page -->
+    <div class="checkout-header mb-4">
+        <h2>Checkout</h2>
+    </div>
+    <hr>
+
+    <!-- Row for Order Summary and Checkout Form -->
+    <div class="row">
+        <!-- Order Summary Section -->
+        <div class="col-12 col-lg-6 mb-5">
+            <p class="text-muted">Order Summary ({{ cart_items|length }})</p>
+            <!-- Iterating through each cart item -->
+            {% for item in cart_items %}
+            <div class="row mb-3 product-shadow">
+                <!-- Product Image -->
+                <div class="col-2 mb-1">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-100">
+                </div>
+                <!-- Product Details -->
+                <div class="col-7">
+                    <p><strong>{{ item.product.name }}</strong></p>
+                    {% if item.size %}<p class="small">Size: {{ item.size }}</p>{% endif %}
+                    <p class="small text-muted">Qty: {{ item.quantity }}</p>
+                </div>
+                <!-- Subtotal for Item -->
+                <div class="col-3 text-right">
+                    <p class="small text-muted">€{{ item.subtotal }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Display Discount Message for Non-Logged-in Users -->
+            {% if not request.user.is_authenticated %}
+            <div class="alert alert-info text-center">
+                <p>Get 10% off your purchase when you <a href="{% url 'account_login' %}?next={{ request.path }}">log
+                        in</a>.</p>
+            </div>
+            {% endif %}
+            <!-- Total and Discount Display -->
+            <div class="total-and-buttons">
+                {% if request.user.is_authenticated %}
+                <p class="mb-3">Discount: €{{ discount|floatformat:"2" }}</p>
+                <h4 class="total-after-discount">Total after Discount: <span id="total">€{{
+                        total_after_discount|floatformat:"2" }}</span></h4>
+                {% else %}
+                <h4>Total: €{{ total }}</h4>
+                {% endif %}
+            </div>
+            <hr>
+        </div>
+
+        <!-- Checkout Form Section -->
+        <div class="col-12 col-lg-6">
+            <!-- Checkout Form -->
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <!-- User Details Fieldset -->
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+                    {{ order_form.full_name|as_crispy_field }}
+                    {{ order_form.email|as_crispy_field }}
+                </fieldset>
+                <!-- Delivery Address Fieldset -->
+                <fieldset class="rounded px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Delivery</legend>
+                    {{ order_form.phone_number|as_crispy_field }}
+                    {{ order_form.street_address1|as_crispy_field }}
+                    {{ order_form.street_address2|as_crispy_field }}
+                    {{ order_form.town_or_city|as_crispy_field }}
+                    {{ order_form.postcode|as_crispy_field }}
+                    {{ order_form.country|as_crispy_field }}
+                </fieldset>
+                <!-- Payment Information Fieldset -->
+                <fieldset class="px-3">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+                    <div id="card-element" class="mb-3"></div>
+                    <div id="card-errors" role="alert"></div>
+                </fieldset>
+                <!-- Submission Buttons -->
+                <div class="submit-button text-right mt-5 mb-2">
+                    <a href="{% url 'view_cart' %}" class="btn btn-outline-dark">
+                        <i class="fas fa-chevron-left"></i> Adjust Bag
+                    </a>
+                    <button id="submit-button" class="btn btn-dark" form="payment-form">
+                        Complete Order <i class="fas fa-lock"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
