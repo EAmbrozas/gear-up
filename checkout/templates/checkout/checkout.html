@@ -3,6 +3,7 @@
 {% load cart_tools %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 <style>
     @media (max-width: 576px) {
         .submit-button .btn {
@@ -69,8 +70,7 @@
             <div class="total-and-buttons">
                 {% if request.user.is_authenticated %}
                 <p class="mb-3">Discount: €{{ discount|floatformat:"2" }}</p>
-                <h4 class="total-after-discount">Total after Discount: <span id="total">€{{
-                        total_after_discount|floatformat:"2" }}</span></h4>
+                <h4 class="total-after-discount">Total after Discount: <span id="total">€{{total_after_discount|floatformat:"2" }}</span></h4>
                 {% else %}
                 <h4>Total: €{{ total }}</h4>
                 {% endif %}
@@ -102,20 +102,41 @@
                 <!-- Payment Information Fieldset -->
                 <fieldset class="px-3">
                     <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
-                    <div id="card-element" class="mb-3"></div>
-                    <div id="card-errors" role="alert"></div>
+                    <!-- A Stripe card element will go here -->
+                    <div class="mb-3" id="card-element"></div>
+
+                    <!-- Used to display form errors -->
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                 </fieldset>
                 <!-- Submission Buttons -->
                 <div class="submit-button text-right mt-5 mb-2">
                     <a href="{% url 'view_cart' %}" class="btn btn-outline-dark">
-                        <i class="fas fa-chevron-left"></i> Adjust Bag
+                        <i class="fas fa-chevron-left"></i> Adjust Cart
                     </a>
                     <button id="submit-button" class="btn btn-dark" form="payment-form">
                         Complete Order <i class="fas fa-lock"></i>
                     </button>
+                    <p class="small text-danger my-0">
+                        <span class="icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </span>
+                        {% if request.user.is_authenticated %}
+                        <span>Your card will be charged <strong>€{{ total_after_discount|floatformat:"2" }}</strong></span>
+                        {% else %}
+                        <span>Your card will be charged <strong>€{{ total }}</strong></span>
+                        {% endif %}
+                    </p>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var stripePublicKey = "{{ stripe_public_key }}";
+    </script>
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
