@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<!-- Any additional CSS specific to the checkout success page -->
+{% endblock %}
+
+{% block content %}
+<!-- Main Container for Checkout Success Page -->
+<div class="container mt-5">
+    <!-- Header for Checkout Success Page -->
+    <div class="checkout-header mb-4">
+        <h2>Order Successful</h2>
+    </div>
+    <hr>
+
+    <!-- Order Success Message -->
+    <div class="row">
+        <div class="col-12 mb-5">
+            <p class="text-success">Thank you for your purchase! Your order has been successfully processed.</p>
+            <p>Order Number: {{ order.order_number }}</p>
+            <p>Email confirmation has been sent to: {{ order.email }}</p>
+        </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-5">
+            <h3>Order Summary</h3>
+            <!-- Iterating through each item in the order -->
+            {% for item in order.lineitems.all %}
+            <div class="row mb-3">
+                <!-- Product Details -->
+                <div class="col-8">
+                    <p><strong>{{ item.product.name }}</strong></p>
+                    {% if item.product_size %}<p class="small">Size: {{ item.product_size }}</p>{% endif %}
+                    <p class="small text-muted">Qty: {{ item.quantity }}</p>
+                </div>
+                <!-- Subtotal for Item -->
+                <div class="col-4 text-right">
+                    <p class="small text-muted">€{{ item.lineitem_total }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <hr>
+            <p class="text-right">Subtotal: €{{ order.total_cost }}</p>
+            <!-- Displaying the Discounted Total -->
+            {% if order.discounted_total and order.total_cost != order.discounted_total %}
+            <p class="text-right text-success"><strong>Discount Applied! Total after Discount: €{{ order.discounted_total }}</strong></p>
+            {% endif %}
+            <!-- Additional Information or Actions -->
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-6 text-lg-right mb-5">
+                    <!-- "Continue Shopping" button -->
+                    <a href="{% url 'product_list' %}" class="btn btn-outline-dark w-100 w-lg-auto">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

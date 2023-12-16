@@ -28,6 +28,7 @@ class Order(models.Model):
     country = CountryField(blank_label='Country *', null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     total_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    discounted_total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     stripe_pid = models.CharField(max_length=254, null=True, blank=True)
 
     def update_total(self):
