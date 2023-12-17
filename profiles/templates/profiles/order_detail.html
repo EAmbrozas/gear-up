@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Main Container for Order Details Page -->
+<div class="container mt-5">
+    <!-- Header for Order Details Page -->
+    <div class="checkout-header mb-4">
+        <h2>Order Details</h2>
+    </div>
+    <hr>
+
+    <!-- Order Details -->
+    <div class="row">
+        <div class="col-12 mb-5">
+            <p>Order Number: {{ order.order_number }}</p>
+            <p>Order Date: {{ order.date }}</p>
+            <p>Email: {{ order.email }}</p>
+            <!-- Displaying Shipping Address -->
+            <p><strong>Shipping Address:</strong></p>
+            <p>{{ order.full_name }}</p>
+            <p>{{ order.street_address1 }}</p>
+            {% if order.street_address2 %}
+                <p>{{ order.street_address2 }}</p>
+            {% endif %}
+            <p>{{ order.town_or_city }}</p>
+            {% if order.county %}
+                <p>{{ order.county }}</p>
+            {% endif %}
+            <p>{{ order.postcode }}</p>
+            <p>{{ order.country }}</p>
+        </div>
+    </div>
+
+    <!-- Order Items Summary -->
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-5">
+            <h3>Order Items</h3>
+            <!-- Iterating through each item in the order -->
+            {% for item in order.lineitems.all %}
+            <div class="row mb-3">
+                <!-- Product Details -->
+                <div class="col-8">
+                    <p><strong>{{ item.product.name }}</strong></p>
+                    {% if item.product_size %}<p class="small">Size: {{ item.product_size }}</p>{% endif %}
+                    <p class="small text-muted">Qty: {{ item.quantity }}</p>
+                </div>
+                <!-- Subtotal for Item -->
+                <div class="col-4 text-right">
+                    <p class="small text-muted">€{{ item.lineitem_total }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <hr>
+            <p class="text-right">Subtotal: €{{ order.total_cost }}</p>
+            <!-- Displaying the Discounted Total -->
+            {% if order.discounted_total and order.total_cost != order.discounted_total %}
+            <p class="text-right text-success"><strong>Discount Applied! Total after Discount: €{{ order.discounted_total }}</strong></p>
+            {% endif %}
+            <!-- Additional Actions -->
+            <div class="row">
+                <div class="col-12 col-lg-6 offset-lg-6 text-lg-right mb-5">
+                    <!-- "Back to Profile" button -->
+                    <a href="{% url 'profile_detail' %}" class="btn btn-outline-dark w-100 w-lg-auto">Back to Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

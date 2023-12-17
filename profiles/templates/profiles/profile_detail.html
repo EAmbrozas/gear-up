@@ -40,16 +40,44 @@
             </div>
           </div>
         </div>
-
-        <!-- Placeholder for Order History -->
+        <!-- Order History -->
         <div class="card mt-4">
-          <div class="card-header bg-dark text-light">
-            <h4 class="card-title">Order History</h4>
-          </div>
-          <div class="card-body">
-            <p>Order history will be displayed here.</p>
-            <!-- Order history content -->
-          </div>
+            <div class="card-header bg-dark text-light">
+                <h4 class="card-title">Order History</h4>
+            </div>
+            <div class="card-body">
+                {% if orders %}
+                    {% for order in orders %}
+                        <div class="order-history-item mb-3">
+                            <div class="row">
+                                <div class="col-6 col-md-3">
+                                    <strong>Order Number:</strong>
+                                    <div>{{ order.order_number }}</div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <strong>Date:</strong>
+                                    <div>{{ order.date }}</div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <strong>Total Cost:</strong>
+                                    {% if order.discounted_total %}
+                                        <div>
+                                            €{{ order.discounted_total }}
+                                        </div>
+                                    {% else %}
+                                        <div>€{{ order.total_cost }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-6 col-md-3 text-md-right">
+                                    <a href="{% url 'order_detail' order.order_number %}" class="btn btn-dark btn-sm mt-2 mt-md-0">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Order history will be displayed here.</p>
+                {% endif %}
+            </div>
         </div>
       </div>
     </div>

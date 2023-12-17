@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from checkout.models import Order
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
@@ -8,13 +9,19 @@ from PIL import Image
 @login_required
 def profile_detail(request):
     """
-    View for displaying the user's profile details.
+    View for displaying the user's profile details along with their order history.
     """
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     if created:
         user_profile.save()
 
-    return render(request, 'profiles/profile_detail.html', {'user_profile': user_profile})
+    orders = Order.objects.filter(user_profile=user_profile).order_by('-date')
+
+    context = {
+        'user_profile': user_profile,
+        'orders': orders,
+    }
+    return render(request, 'profiles/profile_detail.html', context)
 
 @login_required
 def profile_update(request):
@@ -42,3 +49,10 @@ def profile_update(request):
         form = UserProfileForm(instance=request.user.userprofile)
 
     return render(request, 'profiles/profile_update.html', {'form': form})
+
+def order_detail_view(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    context = {
+        'order': order,
+    }
+    return render(request, 'profiles/order_detail.html', context)
