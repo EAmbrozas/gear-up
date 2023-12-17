@@ -18,7 +18,6 @@ var style = {
 var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
-// Handle realtime validation errors on the card element
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     if (event.error) {
@@ -34,13 +33,18 @@ card.addEventListener('change', function (event) {
     }
 });
 
-// Handle form submit
 var form = document.getElementById('payment-form');
+var submitButton = document.getElementById('submit-button');
+var spinner = document.getElementById('spinner');
+var lockIcon = document.getElementById('lock-icon');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-    card.update({ 'disabled': true});
-    $('#submit-button').attr('disabled', true);
+    card.update({ 'disabled': true });
+    submitButton.disabled = true;
+    spinner.style.display = 'inline-block'; // Show spinner
+    lockIcon.style.display = 'none'; // Hide lock icon
+
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
@@ -54,11 +58,18 @@ form.addEventListener('submit', function(ev) {
                 </span>
                 <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
-            card.update({ 'disabled': false});
-            $('#submit-button').attr('disabled', false);
+            card.update({ 'disabled': false });
+            submitButton.disabled = false;
+            spinner.style.display = 'none'; // Hide spinner
+            lockIcon.style.display = 'inline'; // Show lock icon
         } else {
             if (result.paymentIntent.status === 'succeeded') {
                 form.submit();
+            } else {
+                card.update({ 'disabled': false });
+                submitButton.disabled = false;
+                spinner.style.display = 'none'; // Hide spinner
+                lockIcon.style.display = 'inline'; // Show lock icon
             }
         }
     });

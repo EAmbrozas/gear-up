@@ -3,7 +3,6 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
-<!-- Any additional CSS specific to the checkout success page -->
 {% endblock %}
 
 {% block content %}
@@ -21,6 +20,19 @@
             <p class="text-success">Thank you for your purchase! Your order has been successfully processed.</p>
             <p>Order Number: {{ order.order_number }}</p>
             <p>Email confirmation has been sent to: {{ order.email }}</p>
+             <!-- Displaying Shipping Address -->
+            <p><strong>Delivering To:</strong></p>
+            <p>{{ order.full_name }}</p>
+            <p>{{ order.street_address1 }}</p>
+            {% if order.street_address2 %}
+                <p>{{ order.street_address2 }}</p>
+            {% endif %}
+            <p>{{ order.town_or_city }}</p>
+            {% if order.county %}
+                <p>{{ order.county }}</p>
+            {% endif %}
+            <p>{{ order.postcode }}</p>
+            <p>{{ order.country }}</p>
         </div>
     </div>
 

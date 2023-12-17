@@ -96,6 +96,7 @@
                     {{ order_form.street_address1|as_crispy_field }}
                     {{ order_form.street_address2|as_crispy_field }}
                     {{ order_form.town_or_city|as_crispy_field }}
+                    {{ order_form.county|as_crispy_field }}
                     {{ order_form.postcode|as_crispy_field }}
                     {{ order_form.country|as_crispy_field }}
                 </fieldset>
@@ -114,7 +115,8 @@
                         <i class="fas fa-chevron-left"></i> Adjust Cart
                     </a>
                     <button id="submit-button" class="btn btn-dark" form="payment-form">
-                        Complete Order <i class="fas fa-lock"></i>
+                        Complete Order <i id="lock-icon" class="fas fa-lock"></i>
+                        <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
                     </button>
                     <p class="small text-danger my-0">
                         <span class="icon">
