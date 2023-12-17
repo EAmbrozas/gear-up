@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from profiles.models import UserProfile
@@ -8,6 +9,20 @@ from products.models import Product, ProductSize
 from cart.contexts import cart_contents
 import stripe
 import json
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'cart': json.dumps(request.session.get('cart', {})),
+            'username': request.user.username if request.user.is_authenticated else 'Anonymous',
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, "Sorry, your payment cannot be processed right now. Please try again later.")
+        return HttpResponse(content=e, status=400)
 
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -20,9 +35,9 @@ def checkout(request):
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],
             'street_address1': request.POST['street_address1'],
-            'street_address2': request.POST.get('street_address2'),
+            'street_address2': request.POST.get('street_address2', ''),
             'town_or_city': request.POST['town_or_city'],
-            'county': request.POST.get('county'),
+            'county': request.POST.get('county', ''),
             'postcode': request.POST['postcode'],
             'country': request.POST['country'],
         }
@@ -39,15 +54,25 @@ def checkout(request):
                 order.stripe_pid = stripe_pid
             current_cart = cart_contents(request)
             order.total_cost = current_cart['total']
-            order.discounted_total = current_cart.get('total_after_discount', order.total_cost)  # Set discounted total
+            order.discounted_total = current_cart.get('total_after_discount', order.total_cost)
             order.original_bag = json.dumps(cart)
             order.save()
 
             for item_key, item_data in cart.items():
                 product_id, size = (item_key.split('-') if '-' in item_key else (item_key, None))
                 product = Product.objects.get(id=product_id)
-                product_size = ProductSize.objects.get(product=product, size=size) if size else None
                 quantity = item_data['quantity']
+                product_size = None
+
+                if size:
+                    product_size = ProductSize.objects.filter(product=product, size=size).first()
+                    if product_size and product_size.quantity >= quantity:
+                        product_size.quantity -= quantity
+                        product_size.save()
+                    else:
+                        messages.error(request, f"Not enough stock for {product.name} size {size}.")
+                        return redirect('cart:view_cart')
+
                 OrderLineItem.objects.create(
                     order=order,
                     product=product,
