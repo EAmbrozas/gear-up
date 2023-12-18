@@ -1,6 +1,5 @@
 asgiref==3.7.2
 astroid==2.5.1
-backports.zoneinfo==0.2.1
 boto3==1.34.2
 botocore==1.34.2
 certifi==2023.7.22
