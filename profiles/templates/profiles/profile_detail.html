@@ -9,11 +9,7 @@
       <div class="col-lg-4 mb-4">
         <div class="card">
           <div class="card-body text-center">
-            {% if user_profile.profile_image %}
-              <img src="{{ user_profile.profile_image.url }}" alt="{{ user.username }} Profile Image" class="img-fluid rounded profile-image mb-3">
-            {% else %}
-              <img src="{{ user_profile.get_default_profile_image }}" alt="{{ user.username }} Profile Image" class="img-fluid rounded profile-image mb-3">
-            {% endif %}
+            <img src="{{ user_profile.get_profile_image_url }}" alt="{{ user.username }} Profile Image" class="img-fluid rounded profile-image mb-3">
             <h4>{{ user.username }}</h4>
             <p class="text-muted">{{ user.email }}</p>
             <a href="{% url 'profile_update' %}" class="btn btn-outline-dark btn-sm">Edit Profile</a>
