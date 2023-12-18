@@ -42,7 +42,7 @@ class UserProfile(models.Model):
         if self.profile_image:
             return self.profile_image.url
         else:
-            return 'https://s3.console.aws.amazon.com/s3/upload/gearupp?region=eu-west-1&prefix=media/profile_images/default_profile_image.jpg'
+            return 'https://gearupp.s3.eu-west-1.amazonaws.com/media/profile_images/default_profile_image.jpg'
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
