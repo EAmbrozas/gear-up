@@ -55,3 +55,10 @@ def profile_update(request):
         form = UserProfileForm(instance=request.user.userprofile)
 
     return render(request, 'profiles/profile_update.html', {'form': form})
+
+def order_detail_view(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+    context = {
+        'order': order,
+    }
+    return render(request, 'profiles/order_detail.html', context)
