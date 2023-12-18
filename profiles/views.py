@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from .models import UserProfile
 from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 
 @login_required
 def profile_detail(request):
@@ -25,20 +27,24 @@ def profile_detail(request):
 
 @login_required
 def profile_update(request):
-    """
-    View for updating the user's profile information.
-    """
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
             user_profile = form.save(commit=False)
 
-            # Resize the profile image if it's updated
-            desired_size = (150, 150)
             if 'profile_image' in request.FILES:
                 img = Image.open(user_profile.profile_image)
-                img.thumbnail(desired_size, Image.LANCZOS)
-                img.save(user_profile.profile_image.path)
+                img.thumbnail((150, 150), Image.LANCZOS)
+                
+                in_memory_file = BytesIO()
+                img.save(in_memory_file, format=img.format)
+                in_memory_file.seek(0)
+
+                user_profile.profile_image.save(
+                    user_profile.profile_image.name,
+                    ContentFile(in_memory_file.read()),
+                    save=False
+                )
 
             user_profile.save()
             messages.success(request, 'Your profile has been updated!')
@@ -49,10 +55,3 @@ def profile_update(request):
         form = UserProfileForm(instance=request.user.userprofile)
 
     return render(request, 'profiles/profile_update.html', {'form': form})
-
-def order_detail_view(request, order_number):
-    order = get_object_or_404(Order, order_number=order_number)
-    context = {
-        'order': order,
-    }
-    return render(request, 'profiles/order_detail.html', context)
