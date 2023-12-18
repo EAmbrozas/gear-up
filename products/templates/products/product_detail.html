@@ -64,7 +64,7 @@
                     {% if product.sizes.all %}
                     <div class="size-selection mb-3">
                         <h5>Select Size:</h5>
-                        <div class="d-flex flex-wrap" role="group" aria-label="Size selection">
+                        <div class="d-flex flex-wrap mt-1" role="group" aria-label="Size selection">
                             {% for size in product.sizes.all %}
                                 <button type="button" class="btn btn-outline-dark btn-size" data-size="{{ size.size }}" {% if not size.has_stock %}disabled{% endif %}>
                                     {{ size.size }}
