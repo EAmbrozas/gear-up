@@ -3,6 +3,9 @@ from .models import Order, OrderLineItem
 from products.models import Product
 from django.contrib import messages
 from django.db import transaction
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 import json
 import time
 
@@ -101,3 +104,20 @@ class StripeWH_Handler:
             messages.error(request, "An error occurred while processing your order. Please try again.")
             transaction.rollback()
             return None
+
+    def _send_confirmation_email(self, order):
+        """Send the user a confirmation email"""
+        cust_email = order.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {'order': order})
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
