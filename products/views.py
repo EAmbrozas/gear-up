@@ -3,12 +3,17 @@ from .models import Product, Brand, Category, ProductSize
 from .forms import ProductForm, ProductSizeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 def product_list(request):
-    """ A view to display all products, with search functionality """
+    """ A view to display all products, with search and category filtering functionality """
     query = request.GET.get('q')
-    if query:
+    category_filter = request.GET.get('category')
+
+    if category_filter:
+        products = Product.objects.filter(category__name__iexact=category_filter)
+    elif query:
         products = Product.objects.filter(
             Q(name__icontains=query) | 
             Q(description__icontains=query) | 
@@ -18,10 +23,25 @@ def product_list(request):
     else:
         products = Product.objects.all()
 
+    products_count = products.count()
+
+    paginator = Paginator(products, 2)
+    page = request.GET.get('page')
+    products = paginator.get_page(page)
+
     brands = Brand.objects.all()
     categories = Category.objects.all()
 
-    return render(request, 'products/product_list.html', {'products': products, 'brands': brands, 'categories': categories})
+    context = {
+        'products': products,
+        'brands': brands,
+        'categories': categories,
+        'query': query,
+        'category_filter': category_filter,
+        'products_count': products_count
+    }
+
+    return render(request, 'products/product_list.html', context)
 
 
 def product_detail(request, pk):

@@ -195,3 +195,22 @@ input[type="number"] {
     height: 150px;
     object-fit: cover;
   }
+
+/* Pagination */
+.pagination .page-link {
+    border-color: #343a40;
+    color: #343a40;
+    background-color: #fff;
+}
+
+.pagination .page-link:hover,
+.pagination .page-item.active .page-link {
+    background-color: #343a40;
+    color: #fff;
+    border-color: #343a40;
+}
+
+.pagination .page-link:focus {
+    outline: none;
+    box-shadow: none;
+}
