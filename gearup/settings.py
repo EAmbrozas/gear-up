@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['gearupp-adc940fbf9f8.herokuapp.com', '8000-eambrozas-gear-up-nkvx5wr0fx.us2.codeanyapp.com']
+ALLOWED_HOSTS = ['gearupp-adc940fbf9f8.herokuapp.com', '8000-eambrozas-gear-up-nkvx5wr0fx.us2.codeanyapp.com', 'port-8000-python-ernestasambrozas434517.preview.codeanywhere.com']
 
 
 # Application definition
