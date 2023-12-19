@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/cart/view/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?q=AGV</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?q=Alpinestars</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?q=Dainese</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?q=HJC</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=1_piece_suits</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=2_piece_suits</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Jackets</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Pants</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Gloves</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Boots</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Helmets</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?category=Accessories</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/accounts/signup/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/accounts/signup/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/accounts/login/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/accounts/login/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/cart/view/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/cart/view/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/17/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/3/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/2/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/4/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/5/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/6/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/8/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/9/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/10/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/11/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/7/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/13/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?page=2</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/18/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/12/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/16/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/20/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/14/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/15/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/product/19/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Faccounts%2Fsignup%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Faccounts%2Fsignup%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Faccounts%2Flogin%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Faccounts%2Flogin%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/accounts/password/reset/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/accounts/password/reset/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fcart%2Fview%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fcart%2Fview%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/17/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/17/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/3/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/3/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/2/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/2/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/4/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/4/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/5/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/5/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/6/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/6/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/8/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/8/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/9/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/9/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/10/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/10/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/11/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/11/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/7/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/7/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/13/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/13/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/products/?page=1</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/18/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/18/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/12/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/12/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/16/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/16/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/20/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/20/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/14/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/14/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/15/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/15/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=/products/product/19/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=/products/product/19/</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Faccounts%2Fpassword%2Freset%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Faccounts%2Fpassword%2Freset%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F17%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F17%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F3%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F3%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F2%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F2%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F4%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F4%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F5%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F5%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F6%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F6%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fproduct%2F8%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://gearupp-adc940fbf9f8.herokuapp.com/accounts/login/?next=%2Fproducts%2Fproduct%2F18%2F</loc>
+  <lastmod>2023-12-19T22:45:39+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
+</urlset>
