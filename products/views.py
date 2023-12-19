@@ -25,7 +25,7 @@ def product_list(request):
 
     products_count = products.count()
 
-    paginator = Paginator(products, 2)
+    paginator = Paginator(products, 12)
     page = request.GET.get('page')
     products = paginator.get_page(page)
 
