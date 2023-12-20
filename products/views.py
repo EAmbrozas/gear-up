@@ -15,8 +15,7 @@ def product_list(request):
         products = Product.objects.filter(category__name__iexact=category_filter)
     elif query:
         products = Product.objects.filter(
-            Q(name__icontains=query) | 
-            Q(description__icontains=query) | 
+            Q(name__icontains=query) |
             Q(category__name__icontains=query) |
             Q(brand__name__icontains=query)
         )
