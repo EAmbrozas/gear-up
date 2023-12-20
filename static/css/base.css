@@ -382,3 +382,16 @@ img.refferal_badge {
         text-align: center;
     }
 }
+
+/* container */
+.container {
+    padding-bottom: 50px !important;
+}
+
+.cart-container {
+    padding-bottom: 100px !important;
+}
+
+.remove-bottom-pading {
+    padding-bottom: 0 !important;
+}
