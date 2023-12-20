@@ -6,7 +6,7 @@
 .home {
     background: url('/static/images/background.jpg') no-repeat center top;
     background-size: cover;
-    height: 100vh;
+    height: calc(100vh - 190px);
     width: 100%;
     color: #555;
     display: flex;
@@ -29,7 +29,8 @@
 
 @media (max-width: 992px) {
     .home {
-        background: url('/static/images/background-md.jpg') no-repeat center top;
+        padding: 150px 0;
+        height: auto;
     }
 
     h1 {
@@ -39,7 +40,7 @@
 
 @media (max-width: 540px) {
     .home {
-        background: url('/static/images/background-sm.jpg') no-repeat center top;
+        padding: 100px 0;
     }
 
     h1 {
