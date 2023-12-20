@@ -4,7 +4,7 @@
 
 /* Home page hero section */
 .home {
-    background: url('/static/images/background.jpg') no-repeat center top;
+    background: url('/static/images/backgorund.webp') no-repeat center top;
     background-size: cover;
     height: calc(100vh - 190px);
     width: 100%;
@@ -29,8 +29,9 @@
 
 @media (max-width: 992px) {
     .home {
-        padding: 150px 0;
-        height: auto;
+        background: url('/static/images/backgorund.webp') no-repeat center top;
+        background-size: cover;
+        height: calc(100vh - 146px);
     }
 
     h1 {
@@ -40,7 +41,9 @@
 
 @media (max-width: 540px) {
     .home {
-        padding: 100px 0;
+        background: url('/static/images/backgorund-sm.webp') no-repeat center left;
+        background-size: cover;
+        height: calc(100vh - 70px);
     }
 
     h1 {
