@@ -43,8 +43,18 @@
             <div class="product-details">
                 <!-- Category and Rating Display -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="product-category"><i class="fas fa-tags"></i> {{ product.category.friendly_name|upper }}</span>
-                    <span class="product-rating"><i class="fas fa-star"></i> {% if num_reviews > 0 %}{{ avg_rating|floatformat:1 }}{% else %}None{% endif %}</span>
+                    <span class="product-category">
+                        <i class="fas fa-tags"></i> 
+                        {{ product.category.friendly_name|upper }}
+                    </span>
+                    <span class="product-rating">
+                        <i class="fas fa-star"></i>
+                        {% if product.rating %}
+                        {{ product.rating|default:"Not Rated"|floatformat:1 }}
+                        {% else %}
+                        Not Rated
+                        {% endif %}
+                    </span>
                 </div>
 
                 <!-- Product Name -->
@@ -210,7 +220,7 @@
             }
 
             // Update star colors to reflect the selected rating
-            star.style.color = star.getAttribute('data-value') <= rating ? 'gold' : 'gray';
+            star.style.color = star.getAttribute('data-value') <= rating ? 'orange' : 'gray';
         });
     }
 </script>

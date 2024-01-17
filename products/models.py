@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
 from django.db.models import Avg
+from reviews.models import Review
 
 class Category(models.Model):
     name = models.CharField(max_length=254, editable=False)

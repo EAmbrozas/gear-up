@@ -48,10 +48,10 @@
                         <div class="product-rating">
                             <span class="product-rating">
                                 <i class="fas fa-star"></i>
-                                {% if product.avg_rating %}
-                                    {{ product.avg_rating|floatformat:1 }}
+                                {% if product.rating %}
+                                {{ product.rating|default:"Not Rated"|floatformat:1 }}
                                 {% else %}
-                                    Not Rated Yet
+                                Not Rated
                                 {% endif %}
                             </span>
                         </div>

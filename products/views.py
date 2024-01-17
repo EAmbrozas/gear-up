@@ -26,10 +26,7 @@ def product_list(request):
     else:
         products = Product.objects.all()
 
-    products = Product.objects.annotate(avg_rating=Avg('reviews__rating'))
-
     products_count = products.count()
-
     paginator = Paginator(products, 12)
     page = request.GET.get('page')
     products = paginator.get_page(page)
@@ -49,11 +46,10 @@ def product_list(request):
     return render(request, 'products/product_list.html', context)
 
 
+
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     reviews = Review.objects.filter(product=product).order_by('-created_at')
-
-    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
     user_review = None
     if request.user.is_authenticated:
@@ -71,9 +67,7 @@ def product_detail(request, pk):
             review.user = request.user
             review.save()
 
-            new_avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
-            product.rating = new_avg_rating
-            product.save()
+            product.update_rating()
 
             messages.success(request, 'Your review has been submitted successfully.')
             return redirect('product_detail', pk=product.pk)
@@ -86,7 +80,6 @@ def product_detail(request, pk):
         'review_form': review_form,
         'user_review': user_review,
         'num_reviews': reviews.count(),
-        'avg_rating': avg_rating,
     }
 
     return render(request, 'products/product_detail.html', context)
