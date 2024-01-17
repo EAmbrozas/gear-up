@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.crypto import get_random_string
 from django.utils.text import slugify
+from django.db.models import Avg
 
 class Category(models.Model):
     name = models.CharField(max_length=254, editable=False)
@@ -48,7 +49,14 @@ class Product(models.Model):
             category_initial = self.category.name[0].upper() if self.category else 'U'
             unique_number = get_random_string(length=6, allowed_chars='0123456789')
             self.sku = f"{category_initial}{unique_number}"
+
         super().save(*args, **kwargs)
+
+    def update_rating(self):
+        reviews = Review.objects.filter(product=self)
+        average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+        self.rating = average_rating
+        self.save()
 
     def __str__(self):
         return self.name

@@ -46,7 +46,14 @@
                             {% endif %}
                         </div>
                         <div class="product-rating">
-                            <i class="fas fa-star"></i> {{ product.rating }}
+                            <span class="product-rating">
+                                <i class="fas fa-star"></i>
+                                {% if product.avg_rating %}
+                                    {{ product.avg_rating|floatformat:1 }}
+                                {% else %}
+                                    Not Rated Yet
+                                {% endif %}
+                            </span>
                         </div>
                     </div>
                     

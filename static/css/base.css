@@ -400,3 +400,29 @@ img.refferal_badge {
 .remove-bottom-pading {
     padding-bottom: 0 !important;
 }
+
+/* Reviews */
+.review-profile-image {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.star-rating .star {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.star-rating .star.filled {
+    color: var(--accent-color);
+}
+
+.review-rating .star {
+    font-size: 24px;
+    color: gray;
+}
+
+.review-rating .star.filled {
+    color: var(--accent-color);
+}

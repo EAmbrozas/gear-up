@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
+from reviews.forms import ReviewForm
+from reviews.models import Review
+from reviews.views import add_review
+from django.db.models import Avg
 
 def product_list(request):
     """ A view to display all products, with search and category filtering functionality """
@@ -21,6 +25,8 @@ def product_list(request):
         )
     else:
         products = Product.objects.all()
+
+    products = products.annotate(avg_rating=Avg('reviews__rating'))
 
     products_count = products.count()
 
@@ -44,9 +50,46 @@ def product_list(request):
 
 
 def product_detail(request, pk):
-    """ A view to display individual product details """
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'products/product_detail.html', {'product': product})
+    reviews = Review.objects.filter(product=product).order_by('-created_at')
+
+    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+
+    user_review = None
+    if request.user.is_authenticated:
+        user_review = reviews.filter(user=request.user).first()
+
+    if request.method == 'POST':
+        if user_review:
+            messages.error(request, 'You have already reviewed this product.')
+            return redirect('product_detail', pk=product.pk)
+
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.product = product
+            review.user = request.user
+            review.save()
+
+            new_avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+            product.rating = new_avg_rating
+            product.save()
+
+            messages.success(request, 'Your review has been submitted successfully.')
+            return redirect('product_detail', pk=product.pk)
+    else:
+        review_form = ReviewForm()
+
+    context = {
+        'product': product,
+        'reviews': reviews,
+        'review_form': review_form,
+        'user_review': user_review,
+        'num_reviews': reviews.count(),
+        'avg_rating': avg_rating,
+    }
+
+    return render(request, 'products/product_detail.html', context)
 
 @login_required
 def product_create(request):
