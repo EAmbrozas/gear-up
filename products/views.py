@@ -26,7 +26,7 @@ def product_list(request):
     else:
         products = Product.objects.all()
 
-    # products = products.annotate(avg_rating=Avg('reviews__rating'))
+    products = Product.objects.annotate(avg_rating=Avg('reviews__rating'))
 
     products_count = products.count()
 
