@@ -78,6 +78,7 @@ ___
     <li>As a administrator I can add, update, and remove products so that the GearUp inventory is always current and accurate</li>
     <li>As a mobile user I can navigate GearUp on my mobile device with ease so that I can enjoy a seamless shopping experience on-the-go</li>
     <li>As a admin I can ensure that product descriptions and content are SEO-friendly so that GearUp ranks well in search engine results and attracts organic traffic</li>
+    <li>As a customer I can leave feedback on the gear and accessories I've purchased so that I can inform others about the quality and performance of the products</li>
     
 </ul>
 <br>
@@ -167,6 +168,21 @@ ___
 
 <ul>
     <li>Description and meta tags were used to helo with SEO, also all the images have their product name using django.</li>
+</ul>
+<br>
+
+>As a customer I can leave feedback on the gear and accessories I've purchased so that I can inform others about the quality and performance of the products
+
+<ul>
+    <li>Users are provided with review form where they can rate and add a comment on a specific product</li>
+
+![Add review image](media/readme/add-review.png)
+    <li>Once the user submits the review they are restircted in creating another review in the same product</li>
+
+![Added review image](media/readme/added-review.png)
+    <li>If the user is logged out the link is displayed to login to leave a review</li>
+
+![Login to review image](media/readme/login-to-review.png)
 </ul>
 <br>
 
@@ -617,6 +633,42 @@ ___
     <td>Redirect to the product list page</td>
     <td>Pass</td>
 </tr>
+<tr>
+    <td>Product Detail Page</td>
+    <td>Write Review Text Field</td>
+    <td>Enter Text</td>
+    <td>User can enter review text in the provided field</td>
+    <td>Pass</td>
+</tr>
+<tr>
+    <td>Product Detail Page</td>
+    <td>Rating Selection</td>
+    <td>Select Rating</td>
+    <td>User can select a star rating for the product</td>
+    <td>Pass</td>
+</tr>
+<tr>
+    <td>Product Detail Page</td>
+    <td>Submit Review Button</td>
+    <td>Click</td>
+    <td>Review and rating are submitted and displayed in the reviews section</td>
+    <td>Pass</td>
+</tr>
+<tr>
+    <td>Product Detail Page</td>
+    <td>Reviews Display</td>
+    <td>Review</td>
+    <td>All submitted reviews and ratings are displayed in the reviews section</td>
+    <td>Pass</td>
+</tr>
+<tr>
+    <td>Product Detail Page</td>
+    <td>Product Rating Display</td>
+    <td>Review</td>
+    <td>Displays the product's rating if available, otherwise shows 'Not Rated'</td>
+    <td>Pass</td>
+</tr>
+
 </table>
 
 <br>
