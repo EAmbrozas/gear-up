@@ -12,20 +12,21 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
     discount = Decimal('0.0')
 
-    for item_key, item_data in cart.items():
+    for item_key, item_data in cart.copy().items():
         product_id = item_data['product_id']
         size = item_data.get('size', None)
         quantity = item_data['quantity']
-        product = Product.objects.get(pk=product_id)
 
+        try:
+            product = Product.objects.get(pk=product_id)
+        except Product.DoesNotExist:
+            cart.pop(item_key)
+            continue
+
+        product_size = None
         if size:
-            try:
-                product_size = ProductSize.objects.filter(product=product, size=size).first()
-                if product_size:
-                    size = product_size.size
-                else:
-                    size = None
-            except ProductSize.DoesNotExist:
+            product_size = ProductSize.objects.filter(product=product, size=size).first()
+            if not product_size:
                 size = None
 
         price = product.price
@@ -37,7 +38,7 @@ def cart_contents(request):
             'item_id': item_key,
             'quantity': quantity,
             'product': product,
-            'size': size,
+            'size': size if product_size else None,
             'subtotal': subtotal,
         })
 
@@ -47,6 +48,7 @@ def cart_contents(request):
     else:
         total_after_discount = total
 
+    request.session['cart'] = cart  # Update the session cart
     return {
         'cart_items': cart_items,
         'total': total,
